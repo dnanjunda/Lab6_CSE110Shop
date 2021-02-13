@@ -19,17 +19,17 @@ class ProductItem extends HTMLElement {
     li.setAttribute('class', 'product');
     title.setAttribute('class', 'title');
     price.setAttribute('class', 'price');
-    img.setAttribute('src', product['image']);
-    img.setAttribute('alt', product['title']);
-    title.textContent = product['title'];
-    price.textContent = product['price'];
+    img.setAttribute('src', product.image);
+    img.setAttribute('alt', product.title);
+    title.textContent = product.title;
+    price.textContent = product.price;
 
     button.innerHTML = "Add to Cart";
 
     let cart = JSON.parse(localStorage.getItem("cart"));
 
     //set button text based on if product is in cart
-    if(cart.includes(product['id'])) {
+    if(cart.includes(product.id)) {
       button.textContent = "Remove from Cart";
       cartCount.textContent = Number(cartCount.textContent) + 1;
     } else {
@@ -40,11 +40,11 @@ class ProductItem extends HTMLElement {
     button.addEventListener("click", () => {
       if(button.textContent === "Remove from Cart") {
         button.textContent = "Add to Cart";
-        cart.splice(cart.indexOf(product['id']), 1);
+        cart.splice(cart.indexOf(product.id), 1);
         cartCount.textContent = Number(cartCount.textContent) - 1;
       } else {
         button.textContent = "Remove from Cart";
-        cart.push(product['id']);
+        cart.push(product.id);
         cartCount.textContent = Number(cartCount.textContent) + 1;
       }
       localStorage.setItem('cart', JSON.stringify(cart));
