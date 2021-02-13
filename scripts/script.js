@@ -2,6 +2,7 @@
 
 window.addEventListener('DOMContentLoaded', () => {
 
+  //fetch products if they don't exist and display them
   if (!localStorage.getItem('products')) {
     fetch('https://fakestoreapi.com/products')
       .then(response => response.json())
@@ -13,6 +14,8 @@ window.addEventListener('DOMContentLoaded', () => {
 });
 
 function loadProducts() {
+
+  //create cart if it doesn't exist in local storage
   if(!localStorage.getItem('cart')) {
     let cart = [];
     localStorage.setItem('cart', JSON.stringify(cart));
@@ -21,6 +24,7 @@ function loadProducts() {
   let productList = document.getElementById('product-list');
   let products = JSON.parse(localStorage.getItem('products'));
 
+  //use custom ProductItem component to display each product
   for(product in products) {
     let item = new ProductItem(product);
     productList.appendChild(item);
