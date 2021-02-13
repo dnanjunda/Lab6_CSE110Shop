@@ -14,15 +14,20 @@ window.addEventListener('DOMContentLoaded', () => {
 });
 
 function loadProducts() {
+  let products = JSON.parse(localStorage.getItem('products'));
 
   //create cart if it doesn't exist in local storage
   if(!localStorage.getItem('cart')) {
-    let cart = [];
+    let cart = {};
+
+    for(product of products) {
+      cart[product.id] = false;
+    }
+    
     localStorage.setItem('cart', JSON.stringify(cart));
   }
 
   let productList = document.getElementById('product-list');
-  let products = JSON.parse(localStorage.getItem('products'));
 
   //use custom ProductItem component to display each product
   for(product of products) {

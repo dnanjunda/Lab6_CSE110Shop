@@ -29,7 +29,7 @@ class ProductItem extends HTMLElement {
     let cart = JSON.parse(localStorage.getItem("cart"));
 
     //set button text based on if product is in cart
-    if(cart.includes(product.id.toString())) {
+    if(cart[product.id]) {
       button.textContent = "Remove from Cart";
       cartCount.textContent = Number(cartCount.textContent) + 1;
     } else {
@@ -40,12 +40,13 @@ class ProductItem extends HTMLElement {
     button.addEventListener("click", () => {
       if(button.textContent === "Remove from Cart") {
         button.textContent = "Add to Cart";
-        cart.splice(cart.indexOf(product.id), 1);
+        cart[product.id] = false;
         cartCount.textContent = Number(cartCount.textContent) - 1;
       } else {
         button.textContent = "Remove from Cart";
-        cart.push(product.id);
+        cart[product.id] = true;
         cartCount.textContent = Number(cartCount.textContent) + 1;
+        alert('Added to Cart!');
       }
       localStorage.setItem('cart', JSON.stringify(cart));
     })
