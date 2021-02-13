@@ -25,7 +25,7 @@ function loadProducts() {
   let products = JSON.parse(localStorage.getItem('products'));
 
   //use custom ProductItem component to display each product
-  for(product in products) {
+  for(product of products) {
     let item = new ProductItem(product);
     productList.appendChild(item);
   }
