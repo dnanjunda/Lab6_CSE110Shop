@@ -53,7 +53,7 @@ class ProductItem extends HTMLElement {
     //add styling from CSS sheet
     let styling = document.createElement('link');
     styling.setAttribute('rel', 'stylesheet');
-    styling.setAttribute('href', '../styles/styles.css');
+    styling.setAttribute('href', 'styles/styles.css');
 
     //add elements to card element
     li.appendChild(img);
