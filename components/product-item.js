@@ -40,11 +40,11 @@ class ProductItem extends HTMLElement {
     button.addEventListener("click", () => {
       if(button.textContent === "Remove from Cart") {
         button.textContent = "Add to Cart";
-        cart.splice(cart.indexOf(product.id.toString()), 1);
+        cart.splice(cart.indexOf(product.id), 1);
         cartCount.textContent = Number(cartCount.textContent) - 1;
       } else {
         button.textContent = "Remove from Cart";
-        cart.push(product.id.toString());
+        cart.push(product.id);
         cartCount.textContent = Number(cartCount.textContent) + 1;
       }
       localStorage.setItem('cart', JSON.stringify(cart));
