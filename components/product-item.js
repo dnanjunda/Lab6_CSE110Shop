@@ -24,8 +24,6 @@ class ProductItem extends HTMLElement {
     title.textContent = product.title;
     price.textContent = product.price;
 
-    button.innerHTML = "Add to Cart";
-
     let cart = JSON.parse(localStorage.getItem("cart"));
 
     //set button text based on if product is in cart
@@ -38,7 +36,7 @@ class ProductItem extends HTMLElement {
 
     //handle button click based on its current text
     button.addEventListener("click", () => {
-      if(button.textContent === "Remove from Cart") {
+      if(cart[product.id]) {
         button.textContent = "Add to Cart";
         cart[product.id] = false;
         cartCount.textContent = Number(cartCount.textContent) - 1;
