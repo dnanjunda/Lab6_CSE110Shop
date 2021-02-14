@@ -24,10 +24,10 @@ class ProductItem extends HTMLElement {
     title.textContent = product.title;
     price.textContent = product.price;
 
-    let cart = JSON.parse(localStorage.getItem("cart"));
+    let checkCart = JSON.parse(localStorage.getItem("cart"));
 
     //set button text based on if product is in cart
-    if(cart[product.id]) {
+    if(checkCart[product.id - 1]) {
       button.textContent = "Remove from Cart";
       cartCount.textContent = Number(cartCount.textContent) + 1;
     } else {
@@ -36,13 +36,14 @@ class ProductItem extends HTMLElement {
 
     //handle button click based on its current text
     button.addEventListener("click", () => {
-      if(cart[product.id]) {
+      let cart = JSON.parse(localStorage.getItem("cart"));
+      if(button.textContent == "Remove from Cart") {
         button.textContent = "Add to Cart";
-        cart[product.id] = false;
+        cart[product.id - 1] = false;
         cartCount.textContent = Number(cartCount.textContent) - 1;
       } else {
         button.textContent = "Remove from Cart";
-        cart[product.id] = true;
+        cart[product.id - 1] = true;
         cartCount.textContent = Number(cartCount.textContent) + 1;
         alert('Added to Cart!');
       }

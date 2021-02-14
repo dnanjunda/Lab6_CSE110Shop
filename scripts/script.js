@@ -18,12 +18,8 @@ function loadProducts() {
 
   //create cart if it doesn't exist in local storage
   if(!localStorage.getItem('cart')) {
-    let cart = {};
+    let cart = new Array(products.length).fill(false);
 
-    for(product of products) {
-      cart[product.id] = false;
-    }
-    
     localStorage.setItem('cart', JSON.stringify(cart));
   }
 
